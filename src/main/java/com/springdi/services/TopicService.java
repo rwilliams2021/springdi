@@ -2,7 +2,7 @@ package com.springdi.services;
 
 import java.util.Set;
 
-public class TopicService {
+public class TopicService  {
 	Set<String> topics;
 
 	public Set<String> getTopics() {
