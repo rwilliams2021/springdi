@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="serviceOne" class="com.springdi.services.ServiceOne"
+		scope="singleton">
+		<lookup-method name="getS2Intance" bean="serviceTwo" />
+	</bean>
+
+	<bean id="serviceTwo" class="com.springdi.services.ServiceTwo"
+		scope="prototype"></bean>
+
+	<bean id="employee" class="com.springdi.services.Employee"
+		scope="prototype">
+	</bean>
+
+	<bean id="shippingService"
+		class="com.springdi.services.ShippingService"></bean>
+
+
+	<bean id="shippingService2"
+		class="com.springdi.services.ShippingService"></bean>
+		
+	<bean id="orderService" class="com.springdi.services.OrderService" autowire="byName">
+		
+<!-- 		<property name="shippingService" ref="shippingService"></property> -->
+		
+	</bean>
+
+	<bean id="greetingService"
+		class="com.springdi.services.GreetingService" scope="singleton"
+		init-method="setup" destroy-method="destroy"  lazy-init="true" > 
+		<property name="msg" value="Hello Spring!!!!!!"></property>
+	</bean>
+
+
+	<bean id="messageService"
+		class="com.springdi.services.MessageService">
+		<constructor-arg name="msg1"
+			value="Hello Container1!!!"></constructor-arg>
+		<constructor-arg name="msg2"
+			value="Hello Container2!!!"></constructor-arg>
+	</bean>
+
+	<bean id="topicService" class="com.springdi.services.TopicService">
+		<property name="topics">
+			<set>
+				<value>Java</value>
+				<value>Servlet</value>
+				<value>JSP</value>
+			</set>
+		</property>
+	</bean>
+
+
+</beans>
